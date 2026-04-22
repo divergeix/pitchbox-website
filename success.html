@@ -42,7 +42,12 @@ h1 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
     <div class="receipt-row"><span class="label">Account</span><span id="email">—</span></div>
     <div class="receipt-row"><span class="label">Payment ID</span><span id="paymentId" style="font-family: monospace; font-size: 11px;">—</span></div>
     <div class="receipt-row"><span class="label">Plan</span><span>PitchBox Pro</span></div>
+    <div class="receipt-row" id="baseRow" style="display:none;"><span class="label">Base</span><span id="baseAmount">—</span></div>
+    <div class="receipt-row" id="gstRow" style="display:none;"><span class="label">GST @ 18%</span><span id="gstAmount">—</span></div>
+    <div class="receipt-row" id="totalRow" style="display:none;"><span class="label" style="font-weight:700;">Total paid</span><span id="totalAmount" style="font-weight:700;">—</span></div>
   </div>
+
+  <p style="font-size:11px;color:#94a3b8;margin-top:-6px;margin-bottom:14px;">Price inclusive of 18% GST</p>
 
   <div class="next-steps">
     <p><span class="num">1</span> Return to the PitchBox sidebar in Chrome.</p>
@@ -64,8 +69,20 @@ h1 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
   const params = new URLSearchParams(window.location.search);
   const email = params.get('email');
   const paymentId = params.get('paymentId');
+  const amount = parseInt(params.get('amount') || '0', 10);
   if (email) document.getElementById('email').textContent = email;
   if (paymentId) document.getElementById('paymentId').textContent = paymentId;
+  if (amount > 0) {
+    const total = amount / 100;
+    const base = total / 1.18;
+    const gst = total - base;
+    document.getElementById('baseAmount').textContent = `₹${base.toFixed(2)}`;
+    document.getElementById('gstAmount').textContent = `₹${gst.toFixed(2)}`;
+    document.getElementById('totalAmount').textContent = `₹${total.toFixed(2)}`;
+    document.getElementById('baseRow').style.display = 'flex';
+    document.getElementById('gstRow').style.display = 'flex';
+    document.getElementById('totalRow').style.display = 'flex';
+  }
 </script>
 </body>
 </html>

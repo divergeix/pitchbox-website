@@ -111,7 +111,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     <div class="plan-desc">For occasional users</div>
     <div class="plan-original" id="starter-original"></div>
     <div class="plan-price" id="starter-price">₹420<span>/mo</span></div>
-    <div class="plan-period" id="starter-period">Billed monthly</div>
+    <div class="plan-period" id="starter-period">Billed monthly · incl. 18% GST</div>
     <a href="#how" class="plan-btn secondary">Choose Starter</a>
     <ul class="features">
       <li>25 site scans per day</li>
@@ -132,7 +132,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     <div class="plan-desc">For SDRs & founders</div>
     <div class="plan-original" id="pro-original"></div>
     <div class="plan-price" id="pro-price">₹840<span>/mo</span></div>
-    <div class="plan-period" id="pro-period">Billed monthly</div>
+    <div class="plan-period" id="pro-period">Billed monthly · incl. 18% GST</div>
     <a href="#how" class="plan-btn primary">Choose Pro</a>
     <ul class="features">
       <li>100 site scans per day</li>
@@ -152,7 +152,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     <div class="plan-desc">For agencies & teams</div>
     <div class="plan-original" id="business-original"></div>
     <div class="plan-price" id="business-price">₹1,430<span>/mo</span></div>
-    <div class="plan-period" id="business-period">Billed monthly</div>
+    <div class="plan-period" id="business-period">Billed monthly · incl. 18% GST</div>
     <a href="#how" class="plan-btn secondary">Choose Business</a>
     <ul class="features">
       <li>300 site scans per day</li>
@@ -280,7 +280,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 
 <div class="footer">
   <p>PitchBox by <a href="https://divergeix.com" target="_blank">DivergeiX</a> &copy; 2026 | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a> | <a href="mailto:support@divergeix.com">Support</a></p>
-  <p style="margin-top:6px;">Payments processed securely by Razorpay (PCI-DSS Level 1, RBI regulated). All prices in INR.</p>
+  <p style="margin-top:6px;">Payments processed securely by Razorpay (PCI-DSS Level 1, RBI regulated). <strong>All prices in INR, inclusive of 18% GST.</strong> GST invoice issued on request.</p>
   <p style="margin-top:8px;color:#94a3b8;font-style:italic;">AI-generated results may not always be accurate. Please review all outputs before sending.</p>
 </div>
 
@@ -301,11 +301,11 @@ function setBilling(type) {
     var d = prices[p];
     if (type === 'monthly') {
       document.getElementById(p + '-price').innerHTML = d.monthly + '<span>/mo</span>';
-      document.getElementById(p + '-period').textContent = 'Billed monthly';
+      document.getElementById(p + '-period').textContent = 'Billed monthly · incl. 18% GST';
       document.getElementById(p + '-original').textContent = '';
     } else {
       document.getElementById(p + '-price').innerHTML = d.annualPer + '<span>/mo</span>';
-      document.getElementById(p + '-period').textContent = d.annual + ' billed yearly';
+      document.getElementById(p + '-period').textContent = d.annual + ' billed yearly · incl. 18% GST';
       document.getElementById(p + '-original').textContent = d.annualSave;
     }
   });
