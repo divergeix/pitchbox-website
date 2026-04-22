@@ -6,68 +6,62 @@
 <title>PitchBox — Complete payment</title>
 <meta name="robots" content="noindex">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background: #0f1117;
-    color: #e8ecf3;
-    min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    padding: 20px;
-  }
-  .card {
-    background: #181b24;
-    border: 1px solid #2a2e3a;
-    border-radius: 14px;
-    padding: 40px;
-    max-width: 440px;
-    width: 100%;
-    text-align: center;
-  }
-  .logo-mark {
-    width: 56px; height: 56px; border-radius: 12px;
-    background: #6366f1; color: white; display: inline-flex;
-    align-items: center; justify-content: center; font-size: 26px; font-weight: 700;
-    margin-bottom: 20px;
-  }
-  h1 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
-  .subtitle { font-size: 14px; color: #9aa3b2; margin-bottom: 28px; }
-  .order-summary {
-    background: #0f1117;
-    border: 1px solid #2a2e3a;
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 24px;
-    text-align: left;
-  }
-  .order-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; }
-  .order-row .label { color: #9aa3b2; }
-  .order-row.total { border-top: 1px solid #2a2e3a; margin-top: 6px; padding-top: 10px; font-weight: 600; font-size: 16px; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
 
-  .btn {
-    display: inline-block; width: 100%; padding: 14px 20px;
-    border: none; border-radius: 10px; font-size: 15px; font-weight: 600;
-    cursor: pointer; text-decoration: none; transition: all 0.15s;
-  }
-  .btn-primary { background: #6366f1; color: white; }
-  .btn-primary:hover:not(:disabled) { background: #818cf8; }
-  .btn-primary:disabled { background: #4b5563; cursor: not-allowed; }
-  .btn-secondary { background: transparent; color: #9aa3b2; border: 1px solid #2a2e3a; margin-top: 10px; }
+.card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 36px 32px; max-width: 460px; width: 100%; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
 
-  .error { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; padding: 12px; border-radius: 8px; font-size: 13px; margin-top: 16px; text-align: left; }
-  .hint { font-size: 12px; color: #6b7280; margin-top: 16px; }
-  .secured { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: #6b7280; margin-top: 20px; }
+.logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 18px; }
+.logo svg { width: 36px; height: 36px; }
+.logo-text { font-size: 18px; font-weight: 900; }
+.logo-text span { color: #22c55e; }
+
+h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; text-align: center; }
+.subtitle { font-size: 14px; color: #64748b; margin-bottom: 24px; text-align: center; }
+
+.order-summary { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; margin-bottom: 20px; }
+.order-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 14px; }
+.order-row .label { color: #64748b; }
+.order-row.total { border-top: 1px solid #e2e8f0; margin-top: 6px; padding-top: 10px; font-weight: 700; font-size: 16px; }
+
+.btn { display: inline-block; width: 100%; padding: 14px 20px; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; text-decoration: none; text-align: center; transition: all 0.15s; }
+.btn-primary { background: #4F46E5; color: #fff; }
+.btn-primary:hover:not(:disabled) { background: #4338ca; }
+.btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+.btn-secondary { background: transparent; color: #64748b; border: 1px solid #e2e8f0; margin-top: 10px; }
+.btn-secondary:hover { background: #f8fafc; }
+
+.error { background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; padding: 12px; border-radius: 8px; font-size: 13px; margin-top: 14px; }
+
+.trust-strip { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin-top: 24px; padding-top: 20px; border-top: 1px solid #e2e8f0; }
+.trust-item { font-size: 11px; color: #64748b; display: flex; align-items: center; gap: 4px; font-weight: 600; }
+
+.compliance { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; padding-top: 16px; border-top: 1px solid #f1f5f9; }
+.compliance-item { text-align: center; }
+.compliance-item .ic { font-size: 18px; margin-bottom: 2px; }
+.compliance-item .lbl { font-size: 9px; font-weight: 700; color: #64748b; letter-spacing: 0.3px; }
+
+.fine-print { font-size: 10px; color: #94a3b8; text-align: center; margin-top: 16px; line-height: 1.5; }
+.fine-print a { color: #4F46E5; text-decoration: none; }
 </style>
 </head>
 <body>
 <div class="card">
-  <div class="logo-mark">P</div>
-  <h1>Upgrade to PitchBox Pro</h1>
-  <p class="subtitle">Unlimited scans + drafts. Cancel anytime.</p>
+  <div class="logo">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="55,10 80,24 80,52 55,66 30,52 30,24" fill="#1e40af" opacity="0.95"/>
+      <polygon points="45,34 70,48 70,76 45,90 20,76 20,48" fill="#22c55e" opacity="0.9"/>
+      <text x="42" y="72" font-family="Arial" font-size="36" font-weight="900" fill="white" text-anchor="middle">D</text>
+    </svg>
+    <div class="logo-text">Diverge<span>IX</span> PitchBox</div>
+  </div>
+
+  <h1>Complete your subscription</h1>
+  <p class="subtitle">Cancel anytime. Tax invoice sent by email.</p>
 
   <div class="order-summary" id="summary" style="display:none;">
     <div class="order-row"><span class="label">Account</span><span id="email">—</span></div>
-    <div class="order-row"><span class="label">Plan</span><span>Pro — monthly</span></div>
+    <div class="order-row"><span class="label">Plan</span><span>PitchBox Pro — monthly</span></div>
     <div class="order-row total"><span>Total</span><span id="amount">—</span></div>
   </div>
 
@@ -76,14 +70,48 @@
 
   <div id="error" class="error" style="display:none;"></div>
 
-  <div class="secured">
-    <span style="color:#22c55e;">●</span> Secured by Razorpay
+  <div class="trust-strip">
+    <span class="trust-item">🔒 Razorpay secured</span>
+    <span class="trust-item">🔄 Cancel anytime</span>
+    <span class="trust-item">💳 UPI · Cards · Net Banking</span>
   </div>
+
+  <div class="compliance">
+    <div class="compliance-item">
+      <div class="ic">🔐</div>
+      <div class="lbl">SSL ENCRYPTED</div>
+    </div>
+    <div class="compliance-item">
+      <div class="ic">🛡</div>
+      <div class="lbl">GDPR · DPDP</div>
+    </div>
+    <div class="compliance-item">
+      <div class="ic">🏦</div>
+      <div class="lbl">PCI-DSS</div>
+    </div>
+    <div class="compliance-item">
+      <div class="ic">☁️</div>
+      <div class="lbl">ISO 27001</div>
+    </div>
+    <div class="compliance-item">
+      <div class="ic">🇮🇳</div>
+      <div class="lbl">RBI REGULATED</div>
+    </div>
+    <div class="compliance-item">
+      <div class="ic">✓</div>
+      <div class="lbl">CWS VERIFIED</div>
+    </div>
+  </div>
+
+  <p class="fine-print">
+    Payment processed by <strong>Razorpay</strong> (PCI-DSS Level 1 certified).<br>
+    Backend on <strong>Microsoft Azure</strong> (ISO 27001, SOC 2). All data in India region.<br>
+    By paying you accept the <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy Policy</a>.
+  </p>
 </div>
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-  // Read order details from URL params (sent by the PitchBox extension)
   const params = new URLSearchParams(window.location.search);
   const orderId = params.get('orderId');
   const keyId = params.get('keyId');
@@ -104,7 +132,7 @@
   }
 
   if (!orderId || !keyId || !amount || !email) {
-    showError('Missing order details. Please return to the PitchBox extension and try Upgrade again.');
+    showError('Missing order details. Please return to the PitchBox extension and click Upgrade again.');
     btn.style.display = 'none';
   } else {
     summaryEl.style.display = 'block';
@@ -123,13 +151,12 @@
       order_id: orderId,
       amount: amount,
       currency: currency,
-      name: 'PitchBox Pro',
-      description: 'Monthly subscription',
+      name: 'DivergeIX PitchBox',
+      description: 'Pro subscription',
+      image: 'https://divergeix.github.io/pitchbox-website/icon.png',
       prefill: { email, name },
-      theme: { color: '#6366f1' },
+      theme: { color: '#4F46E5' },
       handler: function (response) {
-        // Razorpay also fires the webhook server-side, which marks the user pro.
-        // Redirect to success page with payment id for display.
         const successParams = new URLSearchParams({
           paymentId: response.razorpay_payment_id,
           email: email,

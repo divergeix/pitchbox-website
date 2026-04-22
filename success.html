@@ -3,62 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payment received — PitchBox Pro</title>
+<title>Payment received — PitchBox</title>
 <meta name="robots" content="noindex">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background: #0f1117;
-    color: #e8ecf3;
-    min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    padding: 20px;
-  }
-  .card {
-    background: #181b24;
-    border: 1px solid #2a2e3a;
-    border-radius: 14px;
-    padding: 48px 40px;
-    max-width: 480px;
-    width: 100%;
-    text-align: center;
-  }
-  .checkmark {
-    width: 72px; height: 72px; border-radius: 50%;
-    background: rgba(34, 197, 94, 0.15);
-    color: #22c55e;
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 38px; font-weight: 700;
-    margin-bottom: 24px;
-  }
-  h1 { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
-  .subtitle { font-size: 15px; color: #9aa3b2; margin-bottom: 30px; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
 
-  .receipt {
-    background: #0f1117; border: 1px solid #2a2e3a; border-radius: 10px;
-    padding: 14px 16px; margin: 20px 0; font-size: 13px; text-align: left;
-  }
-  .receipt-row { display: flex; justify-content: space-between; padding: 4px 0; }
-  .receipt-row .label { color: #9aa3b2; }
+.card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 44px 36px; max-width: 480px; width: 100%; text-align: center; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
 
-  .next-steps {
-    background: rgba(99, 102, 241, 0.08);
-    border: 1px solid rgba(99, 102, 241, 0.3);
-    border-radius: 10px;
-    padding: 18px;
-    margin: 24px 0;
-    text-align: left;
-    font-size: 14px;
-    color: #d8dde6;
-  }
-  .next-steps .num {
-    display: inline-block; width: 22px; height: 22px; border-radius: 50%;
-    background: #6366f1; color: white; font-size: 12px; font-weight: 700;
-    line-height: 22px; text-align: center; margin-right: 8px;
-  }
-  .next-steps p { margin-bottom: 10px; }
-  .next-steps p:last-child { margin-bottom: 0; }
+.checkmark { width: 72px; height: 72px; border-radius: 50%; background: #f0fdf4; color: #16a34a; display: inline-flex; align-items: center; justify-content: center; font-size: 38px; font-weight: 700; margin-bottom: 20px; }
+
+h1 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+.subtitle { font-size: 15px; color: #64748b; margin-bottom: 26px; }
+
+.receipt { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px 16px; margin: 20px 0; font-size: 13px; text-align: left; }
+.receipt-row { display: flex; justify-content: space-between; padding: 4px 0; }
+.receipt-row .label { color: #64748b; }
+
+.next-steps { background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 10px; padding: 18px; margin: 22px 0; text-align: left; font-size: 14px; color: #312e81; }
+.next-steps .num { display: inline-block; width: 22px; height: 22px; border-radius: 50%; background: #4F46E5; color: white; font-size: 12px; font-weight: 800; line-height: 22px; text-align: center; margin-right: 8px; }
+.next-steps p { margin-bottom: 10px; }
+.next-steps p:last-child { margin-bottom: 0; }
+
+.trust-strip { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 24px; padding-top: 18px; border-top: 1px solid #e2e8f0; }
+.trust-item { font-size: 10px; color: #94a3b8; font-weight: 600; }
+
+.fine-print { font-size: 11px; color: #94a3b8; margin-top: 16px; }
+.fine-print a { color: #4F46E5; text-decoration: none; }
 </style>
 </head>
 <body>
@@ -70,20 +41,23 @@
   <div class="receipt">
     <div class="receipt-row"><span class="label">Account</span><span id="email">—</span></div>
     <div class="receipt-row"><span class="label">Payment ID</span><span id="paymentId" style="font-family: monospace; font-size: 11px;">—</span></div>
-    <div class="receipt-row"><span class="label">Plan</span><span>Pro — ₹499 / month</span></div>
+    <div class="receipt-row"><span class="label">Plan</span><span>PitchBox Pro</span></div>
   </div>
 
   <div class="next-steps">
     <p><span class="num">1</span> Return to the PitchBox sidebar in Chrome.</p>
-    <p><span class="num">2</span> Open <strong>Settings</strong>.</p>
-    <p><span class="num">3</span> In the <strong>"Already paid?"</strong> box, re-enter your password and click <strong>Refresh plan from server</strong>.</p>
-    <p><span class="num">4</span> You'll see your plan flip from Free → Pro. That's it.</p>
+    <p><span class="num">2</span> Open <strong>Settings</strong> → click <strong>Refresh plan</strong>.</p>
+    <p><span class="num">3</span> Start scanning — all paid features are unlocked.</p>
   </div>
 
-  <p style="font-size: 12px; color: #6b7280; margin-top: 24px;">
-    Questions? Email <a href="mailto:support@divergeix.com" style="color:#6366f1;">support@divergeix.com</a>.<br>
-    A receipt has been sent by Razorpay to your email.
+  <p class="fine-print">
+    Need help? Email <a href="mailto:support@divergeix.com">support@divergeix.com</a><br>
+    A tax invoice has been sent by Razorpay to your email.
   </p>
+
+  <div class="trust-strip">
+    <span class="trust-item">🔐 SSL · 🛡 GDPR · 🇮🇳 DPDP · 🏦 PCI-DSS · ☁️ ISO 27001</span>
+  </div>
 </div>
 
 <script>

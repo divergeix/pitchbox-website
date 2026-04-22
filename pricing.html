@@ -3,171 +3,313 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PitchBox Pricing — Website intelligence for cold outreach</title>
-<meta name="description" content="Free 5 scans/day, or unlimited Pro at ₹499/month. Cancel anytime.">
+<title>PitchBox Pricing — Website intelligence to cold outreach</title>
+<meta name="description" content="Free 5 scans/day, or unlimited Pro at ₹840/month. Cancel anytime. Secure payments via Razorpay.">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background: #0f1117;
-    color: #e8ecf3;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-  }
-  .container { max-width: 960px; margin: 0 auto; padding: 60px 20px; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; min-height: 100vh; }
 
-  header { text-align: center; margin-bottom: 50px; }
-  .logo {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 22px; font-weight: 700; color: #6366f1;
-    margin-bottom: 16px;
-  }
-  .logo-mark {
-    width: 36px; height: 36px; border-radius: 8px;
-    background: #6366f1; color: white; display: inline-flex;
-    align-items: center; justify-content: center; font-size: 18px;
-  }
-  h1 { font-size: 38px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
-  .subtitle { font-size: 17px; color: #9aa3b2; max-width: 560px; margin: 0 auto; }
+.header { text-align: center; padding: 40px 20px 20px; }
+.logo { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.logo svg { width: 48px; height: 48px; }
+.logo-text { font-size: 24px; font-weight: 900; }
+.logo-text span { color: #22c55e; }
+.header h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; }
+.header p { font-size: 16px; color: #64748b; max-width: 560px; margin: 0 auto; }
 
-  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 50px; }
-  @media (max-width: 700px) { .plans { grid-template-columns: 1fr; } }
+.toggle-wrap { text-align: center; margin: 24px 0; }
+.toggle { display: inline-flex; background: #e2e8f0; border-radius: 30px; padding: 4px; }
+.toggle button { padding: 10px 24px; border: none; border-radius: 26px; font-size: 14px; font-weight: 600; cursor: pointer; background: transparent; color: #64748b; transition: all 0.2s; }
+.toggle button.active { background: #fff; color: #0f172a; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.save-badge { display: inline-block; background: #22c55e; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 6px; }
 
-  .plan {
-    background: #181b24;
-    border: 1px solid #2a2e3a;
-    border-radius: 14px;
-    padding: 32px;
-  }
-  .plan.featured {
-    border-color: #6366f1;
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-    position: relative;
-  }
-  .plan.featured::before {
-    content: 'Most popular';
-    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-    background: #6366f1; color: white; padding: 4px 14px;
-    border-radius: 20px; font-size: 11px; font-weight: 600;
-    letter-spacing: 0.5px; text-transform: uppercase;
-  }
-  .plan-name { font-size: 13px; font-weight: 600; color: #9aa3b2; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-  .plan-price { font-size: 42px; font-weight: 700; margin-bottom: 4px; }
-  .plan-price .currency { font-size: 22px; vertical-align: top; line-height: 1.6; color: #9aa3b2; }
-  .plan-price .period { font-size: 16px; font-weight: 400; color: #9aa3b2; }
-  .plan-tagline { font-size: 14px; color: #9aa3b2; margin-bottom: 24px; }
+.plans { display: flex; justify-content: center; gap: 20px; padding: 20px; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; }
 
-  .features { list-style: none; margin: 24px 0; }
-  .features li { padding: 8px 0; font-size: 14px; color: #d8dde6; display: flex; gap: 8px; align-items: flex-start; }
-  .features li::before { content: '✓'; color: #22c55e; font-weight: bold; flex-shrink: 0; }
-  .features li.dim { color: #6b7280; }
-  .features li.dim::before { content: '—'; color: #4b5563; }
+.plan { background: #fff; border: 2px solid #e2e8f0; border-radius: 16px; padding: 32px 28px; width: 300px; position: relative; transition: all 0.2s; }
+.plan:hover { border-color: #cbd5e1; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.plan.popular { border-color: #4F46E5; }
+.plan.popular::before { content: 'MOST POPULAR'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #4F46E5; color: #fff; font-size: 11px; font-weight: 800; padding: 4px 16px; border-radius: 20px; letter-spacing: 0.5px; }
 
-  .btn {
-    display: block; width: 100%; padding: 12px 20px;
-    border: none; border-radius: 10px; font-size: 14px; font-weight: 600;
-    cursor: pointer; text-align: center; text-decoration: none;
-    transition: all 0.15s; margin-top: 16px;
-  }
-  .btn-primary { background: #6366f1; color: white; }
-  .btn-primary:hover { background: #818cf8; }
-  .btn-secondary { background: transparent; color: #d8dde6; border: 1px solid #2a2e3a; }
-  .btn-secondary:hover { background: #181b24; border-color: #6366f1; }
+.plan-name { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+.plan-desc { font-size: 13px; color: #64748b; margin-bottom: 16px; }
+.plan-price { font-size: 40px; font-weight: 900; margin-bottom: 4px; }
+.plan-price span { font-size: 16px; font-weight: 500; color: #94a3b8; }
+.plan-period { font-size: 13px; color: #94a3b8; margin-bottom: 20px; }
+.plan-original { text-decoration: line-through; color: #94a3b8; font-size: 14px; margin-bottom: 2px; }
 
-  .faq { margin-top: 60px; }
-  .faq h2 { font-size: 22px; margin-bottom: 20px; }
-  .faq-item { padding: 16px 0; border-bottom: 1px solid #2a2e3a; }
-  .faq-q { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-  .faq-a { font-size: 14px; color: #9aa3b2; }
+.plan-btn { display: block; width: 100%; padding: 14px; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-bottom: 20px; text-decoration: none; text-align: center; }
+.plan-btn.primary { background: #4F46E5; color: #fff; }
+.plan-btn.primary:hover { background: #4338ca; }
+.plan-btn.secondary { background: #f1f5f9; color: #0f172a; }
+.plan-btn.secondary:hover { background: #e2e8f0; }
 
-  footer { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid #2a2e3a; color: #6b7280; font-size: 13px; }
-  footer a { color: #6366f1; text-decoration: none; }
+.features { list-style: none; }
+.features li { font-size: 13.5px; padding: 6px 0; color: #334155; display: flex; align-items: flex-start; gap: 8px; }
+.features li::before { content: '✓'; color: #22c55e; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+.features li.locked::before { content: '✗'; color: #94a3b8; }
+.features li.locked { color: #94a3b8; }
+
+.free-plan { background: #fff; border: 2px solid #e2e8f0; border-radius: 16px; padding: 24px 28px; max-width: 700px; margin: 30px auto; text-align: center; }
+.free-plan h3 { font-size: 18px; margin-bottom: 6px; }
+.free-plan p { font-size: 13px; color: #64748b; margin-bottom: 12px; }
+.free-features { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 13px; color: #64748b; }
+
+.trust { display: flex; justify-content: center; gap: 30px; margin: 20px auto; flex-wrap: wrap; }
+.trust-item { font-size: 13px; color: #64748b; display: flex; align-items: center; gap: 6px; }
+
+.compliance-strip { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin: 24px auto; padding: 20px 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; max-width: 900px; }
+.compliance-item { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 90px; }
+.compliance-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.compliance-title { font-size: 11px; font-weight: 700; color: #0f172a; letter-spacing: 0.3px; }
+.compliance-sub { font-size: 10px; color: #94a3b8; text-align: center; }
+
+.security-section { max-width: 800px; margin: 40px auto; padding: 30px; background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; }
+.security-section h2 { font-size: 22px; margin-bottom: 16px; text-align: center; }
+.security-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+@media (max-width: 600px) { .security-grid { grid-template-columns: 1fr; } }
+.security-card { padding: 16px; background: #f8fafc; border-radius: 10px; }
+.security-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #0f172a; }
+.security-card p { font-size: 13px; color: #64748b; line-height: 1.5; }
+
+.faq { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+.faq h2 { font-size: 22px; margin-bottom: 20px; text-align: center; }
+.faq-item { padding: 16px 0; border-bottom: 1px solid #e2e8f0; }
+.faq-q { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: #0f172a; }
+.faq-a { font-size: 14px; color: #64748b; }
+.faq-a a { color: #4F46E5; text-decoration: none; }
+
+.footer { text-align: center; padding: 30px 20px; color: #94a3b8; font-size: 12px; }
+.footer a { color: #4F46E5; text-decoration: none; }
 </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <div class="logo">
-      <span class="logo-mark">P</span>
-      PitchBox
-    </div>
-    <h1>Pricing</h1>
-    <p class="subtitle">Turn any company website into a personalized cold outreach in one click. Free for casual use, unlimited for ₹499/month.</p>
-  </header>
 
-  <div class="plans">
-    <!-- Free -->
-    <div class="plan">
-      <div class="plan-name">Free</div>
-      <div class="plan-price"><span class="currency">₹</span>0<span class="period"> / month</span></div>
-      <div class="plan-tagline">For occasional research and trying things out.</div>
-      <ul class="features">
-        <li>5 site scans per day</li>
-        <li>3 outreach drafts per day</li>
-        <li>BYO Claude API key (you pay Anthropic directly)</li>
-        <li>Tech-stack detection (100+ tools)</li>
-        <li>Buying-signal detection</li>
-        <li>Outreach angle generation</li>
-        <li>PDF export with audit detail</li>
-        <li>Save up to 25 prospects</li>
-      </ul>
-      <a href="https://chromewebstore.google.com/" class="btn btn-secondary" target="_blank">Get the extension</a>
-    </div>
-
-    <!-- Pro -->
-    <div class="plan featured">
-      <div class="plan-name">Pro</div>
-      <div class="plan-price"><span class="currency">₹</span>499<span class="period"> / month</span></div>
-      <div class="plan-tagline">For SDRs, founders, agencies, recruiters running outreach daily.</div>
-      <ul class="features">
-        <li><strong>Unlimited</strong> site scans</li>
-        <li><strong>Unlimited</strong> outreach drafts</li>
-        <li>BYO Claude API key</li>
-        <li>Everything in Free</li>
-        <li>Save unlimited prospects</li>
-        <li>Deep-scan subpages (careers, blog, case studies)</li>
-        <li>Per-image alt audit + broken-link audit in PDF</li>
-        <li>Priority email support</li>
-      </ul>
-      <p style="text-align: center; font-size: 12px; color: #9aa3b2; margin-top: 12px;">
-        Open the PitchBox sidebar → Settings → Sign in → Upgrade
-      </p>
-      <p style="text-align: center; font-size: 11px; color: #6b7280; margin-top: 8px;">
-        Annual: ₹4,999 (2 months free)
-      </p>
-    </div>
+<div class="header">
+  <div class="logo">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="55,10 80,24 80,52 55,66 30,52 30,24" fill="#1e40af" opacity="0.95"/>
+      <polygon points="45,34 70,48 70,76 45,90 20,76 20,48" fill="#22c55e" opacity="0.9"/>
+      <text x="42" y="72" font-family="Arial" font-size="36" font-weight="900" fill="white" text-anchor="middle">D</text>
+    </svg>
+    <div class="logo-text">Diverge<span>IX</span> PitchBox</div>
   </div>
-
-  <div class="faq">
-    <h2>Common questions</h2>
-
-    <div class="faq-item">
-      <div class="faq-q">Do I need my own Claude API key?</div>
-      <div class="faq-a">Yes — both Free and Pro use your Anthropic API key, which you supply once in Settings. PitchBox never proxies your queries; calls go straight from your browser to Anthropic. Pro removes our daily caps but you continue to pay Anthropic directly for what you use.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">How does PitchBox handle my data?</div>
-      <div class="faq-a">Everything stays local in your browser. Scans, prospects, drafts, and your API key are stored in <code>chrome.storage.local</code>. Nothing is uploaded to our servers except your account email when you create a paid account. See <a href="privacy.html" style="color:#6366f1">Privacy Policy</a>.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Can I cancel anytime?</div>
-      <div class="faq-a">Yes. Email <a href="mailto:support@divergeix.com" style="color:#6366f1">support@divergeix.com</a> to cancel. No refunds for partial months but you keep Pro access until the end of the billing period.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Which payment methods?</div>
-      <div class="faq-a">UPI, all major Indian cards, net banking, and international Visa / Mastercard via Razorpay.</div>
-    </div>
-  </div>
-
-  <footer>
-    <p>PitchBox is built by <a href="https://divergeix.com" target="_blank">DivergeiX</a>.</p>
-    <p style="margin-top: 6px;">
-      <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="mailto:support@divergeix.com">support@divergeix.com</a>
-    </p>
-  </footer>
+  <h1>Choose Your Plan</h1>
+  <p>Turn any company website into personalized cold outreach in one click. Cancel anytime.</p>
 </div>
+
+<div class="toggle-wrap">
+  <div class="toggle">
+    <button id="monthlyBtn" class="active" onclick="setBilling('monthly')">Monthly</button>
+    <button id="annualBtn" onclick="setBilling('annual')">Annual <span class="save-badge">Save 50%</span></button>
+  </div>
+</div>
+
+<div class="plans" id="plansContainer">
+  <!-- Starter -->
+  <div class="plan">
+    <div class="plan-name">Starter</div>
+    <div class="plan-desc">For occasional users</div>
+    <div class="plan-original" id="starter-original"></div>
+    <div class="plan-price" id="starter-price">₹420<span>/mo</span></div>
+    <div class="plan-period" id="starter-period">Billed monthly</div>
+    <a href="#how" class="plan-btn secondary">Choose Starter</a>
+    <ul class="features">
+      <li>25 site scans per day</li>
+      <li>10 outreach drafts per day</li>
+      <li>Tech-stack detection (100+ tools)</li>
+      <li>Buying-signal detection</li>
+      <li>Outreach angle generation</li>
+      <li>PDF export with audit detail</li>
+      <li>Save up to 50 prospects</li>
+      <li class="locked">Deep subpage scan</li>
+      <li class="locked">Priority support</li>
+    </ul>
+  </div>
+
+  <!-- Pro -->
+  <div class="plan popular">
+    <div class="plan-name">Pro</div>
+    <div class="plan-desc">For SDRs & founders</div>
+    <div class="plan-original" id="pro-original"></div>
+    <div class="plan-price" id="pro-price">₹840<span>/mo</span></div>
+    <div class="plan-period" id="pro-period">Billed monthly</div>
+    <a href="#how" class="plan-btn primary">Choose Pro</a>
+    <ul class="features">
+      <li>100 site scans per day</li>
+      <li>50 outreach drafts per day</li>
+      <li>Everything in Starter</li>
+      <li>Save unlimited prospects</li>
+      <li>Deep-scan subpages (careers, blog, case studies)</li>
+      <li>Per-image alt + broken-link audit in PDF</li>
+      <li>Recruiter / Founder / Agency angle modes</li>
+      <li>Priority email support</li>
+    </ul>
+  </div>
+
+  <!-- Business -->
+  <div class="plan">
+    <div class="plan-name">Business</div>
+    <div class="plan-desc">For agencies & teams</div>
+    <div class="plan-original" id="business-original"></div>
+    <div class="plan-price" id="business-price">₹1,430<span>/mo</span></div>
+    <div class="plan-period" id="business-period">Billed monthly</div>
+    <a href="#how" class="plan-btn secondary">Choose Business</a>
+    <ul class="features">
+      <li>300 site scans per day</li>
+      <li>150 outreach drafts per day</li>
+      <li>Everything in Pro</li>
+      <li>Up to 5 team seats</li>
+      <li>Shared prospect library</li>
+      <li>White-label PDF exports</li>
+      <li>Onboarding call</li>
+      <li>Dedicated support channel</li>
+    </ul>
+  </div>
+</div>
+
+<div class="free-plan" id="how">
+  <h3>Free Plan</h3>
+  <p>5 scans/day • 3 drafts/day • All AI features included</p>
+  <div class="free-features">
+    <span>✓ Tech-stack detection</span>
+    <span>✓ Signal detection</span>
+    <span>✓ Outreach angles</span>
+    <span>✓ PDF export</span>
+  </div>
+  <p style="margin-top:14px;font-size:12px;color:#94a3b8;">Open the PitchBox sidebar → Settings → Sign in → choose a plan</p>
+</div>
+
+<div class="trust">
+  <div class="trust-item">🔒 Secure payments via Razorpay</div>
+  <div class="trust-item">🔄 Cancel anytime</div>
+  <div class="trust-item">💳 GPay, UPI, Cards, Net Banking</div>
+</div>
+
+<div class="compliance-strip">
+  <div class="compliance-item">
+    <div class="compliance-icon" style="background:rgba(34,197,94,0.08);">🔐</div>
+    <div class="compliance-title">SSL ENCRYPTED</div>
+    <div class="compliance-sub">256-bit encryption</div>
+  </div>
+  <div class="compliance-item">
+    <div class="compliance-icon" style="background:rgba(59,130,246,0.08);">🛡</div>
+    <div class="compliance-title">GDPR COMPLIANT</div>
+    <div class="compliance-sub">View or delete data anytime</div>
+  </div>
+  <div class="compliance-item">
+    <div class="compliance-icon" style="background:rgba(168,85,247,0.08);">🔒</div>
+    <div class="compliance-title">NO DATA STORED</div>
+    <div class="compliance-sub">Scans stay in your browser</div>
+  </div>
+  <div class="compliance-item">
+    <div class="compliance-icon" style="background:rgba(251,146,60,0.08);">✓</div>
+    <div class="compliance-title">CWS VERIFIED</div>
+    <div class="compliance-sub">Chrome Web Store approved</div>
+  </div>
+  <div class="compliance-item">
+    <div class="compliance-icon" style="background:rgba(99,102,241,0.08);">🇮🇳</div>
+    <div class="compliance-title">DPDP READY</div>
+    <div class="compliance-sub">India Data Protection Act 2023</div>
+  </div>
+  <div class="compliance-item">
+    <div class="compliance-icon" style="background:rgba(244,63,94,0.08);">🏦</div>
+    <div class="compliance-title">PCI-DSS</div>
+    <div class="compliance-sub">Razorpay-certified gateway</div>
+  </div>
+</div>
+
+<div class="security-section">
+  <h2>Your data, your control</h2>
+  <p style="text-align:center;color:#64748b;font-size:14px;">PitchBox is built privacy-first. Here's exactly what happens with your data.</p>
+  <div class="security-grid">
+    <div class="security-card">
+      <h3>🔐 Local-first storage</h3>
+      <p>Scans, prospects, drafts, and your Anthropic API key live in <code>chrome.storage.local</code> on your device. Nothing is uploaded to our servers except your account email when you subscribe.</p>
+    </div>
+    <div class="security-card">
+      <h3>🛡 GDPR & DPDP rights</h3>
+      <p>Right to access, rectify, erase, port, and withdraw consent — exercise any of these by emailing <a href="mailto:privacy@divergeix.com" style="color:#4F46E5;">privacy@divergeix.com</a>. We respond within 30 days.</p>
+    </div>
+    <div class="security-card">
+      <h3>🏦 PCI-DSS payments</h3>
+      <p>Razorpay (PCI-DSS Level 1 certified, RBI regulated) handles all payment data. Your card details never touch our servers. Webhooks are HMAC-SHA256 signed.</p>
+    </div>
+    <div class="security-card">
+      <h3>☁️ ISO-aligned infrastructure</h3>
+      <p>Backend hosted on Microsoft Azure (ISO 27001, ISO 27018, SOC 2 certified). Data residency in Central India. Encryption at rest (AES-256) and in transit (TLS 1.2+).</p>
+    </div>
+    <div class="security-card">
+      <h3>🇮🇳 DPDP Act 2023 ready</h3>
+      <p>Compliant with India's Digital Personal Data Protection Act: explicit consent, purpose limitation, data minimization, breach notification, and Data Principal rights.</p>
+    </div>
+    <div class="security-card">
+      <h3>🚫 No training, no selling</h3>
+      <p>Your scans and prospects are never used to train AI models. We do not sell, rent, or share data with third parties.</p>
+    </div>
+  </div>
+</div>
+
+<div class="faq">
+  <h2>Common questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">Do I need any API keys or accounts?</div>
+    <div class="faq-a">No. Everything's included in your subscription — sign in once and the AI features work out of the box. No third-party setup, no extra fees, no surprise costs.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How is my data protected?</div>
+    <div class="faq-a">Scans and prospects stay in your browser (<code>chrome.storage.local</code>). Only your account email + payment record are on our servers. We are GDPR + DPDP Act 2023 compliant. Backend on Microsoft Azure (ISO 27001 / SOC 2 certified). Payments via Razorpay (PCI-DSS Level 1, RBI regulated). See <a href="privacy.html">Privacy Policy</a>.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Can I cancel anytime?</div>
+    <div class="faq-a">Yes. Email <a href="mailto:support@divergeix.com">support@divergeix.com</a> to cancel. No refunds for partial months but you keep paid access until the end of the billing period.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Which payment methods?</div>
+    <div class="faq-a">UPI, GPay, all major Indian cards, net banking, and international Visa / Mastercard via Razorpay. All payments PCI-DSS compliant.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What happens if I downgrade?</div>
+    <div class="faq-a">You keep your current tier until the billing period ends, then drop to the new tier on the next renewal. Your saved prospects stay accessible regardless.</div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>PitchBox by <a href="https://divergeix.com" target="_blank">DivergeiX</a> &copy; 2026 | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a> | <a href="mailto:support@divergeix.com">Support</a></p>
+  <p style="margin-top:6px;">Payments processed securely by Razorpay (PCI-DSS Level 1, RBI regulated). All prices in INR.</p>
+  <p style="margin-top:8px;color:#94a3b8;font-style:italic;">AI-generated results may not always be accurate. Please review all outputs before sending.</p>
+</div>
+
+<script>
+var billing = 'monthly';
+var prices = {
+  starter:  { monthly: '₹420',   annual: '₹2,499', annualPer: '₹208', annualSave: '₹5,040 → ₹2,499' },
+  pro:      { monthly: '₹840',   annual: '₹4,999', annualPer: '₹417', annualSave: '₹10,080 → ₹4,999' },
+  business: { monthly: '₹1,430', annual: '₹8,399', annualPer: '₹700', annualSave: '₹17,160 → ₹8,399' }
+};
+
+function setBilling(type) {
+  billing = type;
+  document.getElementById('monthlyBtn').className = type === 'monthly' ? 'active' : '';
+  document.getElementById('annualBtn').className = type === 'annual' ? 'active' : '';
+
+  ['starter', 'pro', 'business'].forEach(function(p) {
+    var d = prices[p];
+    if (type === 'monthly') {
+      document.getElementById(p + '-price').innerHTML = d.monthly + '<span>/mo</span>';
+      document.getElementById(p + '-period').textContent = 'Billed monthly';
+      document.getElementById(p + '-original').textContent = '';
+    } else {
+      document.getElementById(p + '-price').innerHTML = d.annualPer + '<span>/mo</span>';
+      document.getElementById(p + '-period').textContent = d.annual + ' billed yearly';
+      document.getElementById(p + '-original').textContent = d.annualSave;
+    }
+  });
+}
+</script>
 </body>
 </html>
