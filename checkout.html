@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PitchBox — Complete payment</title>
+<meta name="robots" content="noindex">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #0f1117;
+    color: #e8ecf3;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .card {
+    background: #181b24;
+    border: 1px solid #2a2e3a;
+    border-radius: 14px;
+    padding: 40px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+  }
+  .logo-mark {
+    width: 56px; height: 56px; border-radius: 12px;
+    background: #6366f1; color: white; display: inline-flex;
+    align-items: center; justify-content: center; font-size: 26px; font-weight: 700;
+    margin-bottom: 20px;
+  }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .subtitle { font-size: 14px; color: #9aa3b2; margin-bottom: 28px; }
+  .order-summary {
+    background: #0f1117;
+    border: 1px solid #2a2e3a;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+  .order-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; }
+  .order-row .label { color: #9aa3b2; }
+  .order-row.total { border-top: 1px solid #2a2e3a; margin-top: 6px; padding-top: 10px; font-weight: 600; font-size: 16px; }
+
+  .btn {
+    display: inline-block; width: 100%; padding: 14px 20px;
+    border: none; border-radius: 10px; font-size: 15px; font-weight: 600;
+    cursor: pointer; text-decoration: none; transition: all 0.15s;
+  }
+  .btn-primary { background: #6366f1; color: white; }
+  .btn-primary:hover:not(:disabled) { background: #818cf8; }
+  .btn-primary:disabled { background: #4b5563; cursor: not-allowed; }
+  .btn-secondary { background: transparent; color: #9aa3b2; border: 1px solid #2a2e3a; margin-top: 10px; }
+
+  .error { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; padding: 12px; border-radius: 8px; font-size: 13px; margin-top: 16px; text-align: left; }
+  .hint { font-size: 12px; color: #6b7280; margin-top: 16px; }
+  .secured { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: #6b7280; margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo-mark">P</div>
+  <h1>Upgrade to PitchBox Pro</h1>
+  <p class="subtitle">Unlimited scans + drafts. Cancel anytime.</p>
+
+  <div class="order-summary" id="summary" style="display:none;">
+    <div class="order-row"><span class="label">Account</span><span id="email">—</span></div>
+    <div class="order-row"><span class="label">Plan</span><span>Pro — monthly</span></div>
+    <div class="order-row total"><span>Total</span><span id="amount">—</span></div>
+  </div>
+
+  <button class="btn btn-primary" id="payBtn" disabled>Loading…</button>
+  <a href="pricing.html" class="btn btn-secondary">Cancel and go back</a>
+
+  <div id="error" class="error" style="display:none;"></div>
+
+  <div class="secured">
+    <span style="color:#22c55e;">●</span> Secured by Razorpay
+  </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  // Read order details from URL params (sent by the PitchBox extension)
+  const params = new URLSearchParams(window.location.search);
+  const orderId = params.get('orderId');
+  const keyId = params.get('keyId');
+  const amount = parseInt(params.get('amount') || '0', 10);
+  const currency = params.get('currency') || 'INR';
+  const email = params.get('email') || '';
+  const name = params.get('name') || '';
+
+  const summaryEl = document.getElementById('summary');
+  const emailEl = document.getElementById('email');
+  const amountEl = document.getElementById('amount');
+  const btn = document.getElementById('payBtn');
+  const errEl = document.getElementById('error');
+
+  function showError(msg) {
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+  }
+
+  if (!orderId || !keyId || !amount || !email) {
+    showError('Missing order details. Please return to the PitchBox extension and try Upgrade again.');
+    btn.style.display = 'none';
+  } else {
+    summaryEl.style.display = 'block';
+    emailEl.textContent = email;
+    amountEl.textContent = `${currency} ${(amount / 100).toFixed(2)}`;
+    btn.disabled = false;
+    btn.textContent = `Pay ${currency} ${(amount / 100).toFixed(2)}`;
+  }
+
+  function openRazorpay() {
+    btn.disabled = true;
+    btn.textContent = 'Opening…';
+
+    const rzp = new Razorpay({
+      key: keyId,
+      order_id: orderId,
+      amount: amount,
+      currency: currency,
+      name: 'PitchBox Pro',
+      description: 'Monthly subscription',
+      prefill: { email, name },
+      theme: { color: '#6366f1' },
+      handler: function (response) {
+        // Razorpay also fires the webhook server-side, which marks the user pro.
+        // Redirect to success page with payment id for display.
+        const successParams = new URLSearchParams({
+          paymentId: response.razorpay_payment_id,
+          email: email,
+        });
+        window.location.href = `success.html?${successParams.toString()}`;
+      },
+      modal: {
+        ondismiss: function () {
+          btn.disabled = false;
+          btn.textContent = `Pay ${currency} ${(amount / 100).toFixed(2)}`;
+        },
+      },
+    });
+    rzp.on('payment.failed', function (response) {
+      showError(`Payment failed: ${response.error.description || response.error.code}`);
+      btn.disabled = false;
+      btn.textContent = 'Try again';
+    });
+    rzp.open();
+  }
+
+  btn.addEventListener('click', openRazorpay);
+</script>
+</body>
+</html>

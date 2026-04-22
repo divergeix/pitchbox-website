@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PitchBox Pricing — Website intelligence for cold outreach</title>
+<meta name="description" content="Free 5 scans/day, or unlimited Pro at ₹499/month. Cancel anytime.">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #0f1117;
+    color: #e8ecf3;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 60px 20px; }
+
+  header { text-align: center; margin-bottom: 50px; }
+  .logo {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 22px; font-weight: 700; color: #6366f1;
+    margin-bottom: 16px;
+  }
+  .logo-mark {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: #6366f1; color: white; display: inline-flex;
+    align-items: center; justify-content: center; font-size: 18px;
+  }
+  h1 { font-size: 38px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .subtitle { font-size: 17px; color: #9aa3b2; max-width: 560px; margin: 0 auto; }
+
+  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 50px; }
+  @media (max-width: 700px) { .plans { grid-template-columns: 1fr; } }
+
+  .plan {
+    background: #181b24;
+    border: 1px solid #2a2e3a;
+    border-radius: 14px;
+    padding: 32px;
+  }
+  .plan.featured {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    position: relative;
+  }
+  .plan.featured::before {
+    content: 'Most popular';
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: #6366f1; color: white; padding: 4px 14px;
+    border-radius: 20px; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  .plan-name { font-size: 13px; font-weight: 600; color: #9aa3b2; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .plan-price { font-size: 42px; font-weight: 700; margin-bottom: 4px; }
+  .plan-price .currency { font-size: 22px; vertical-align: top; line-height: 1.6; color: #9aa3b2; }
+  .plan-price .period { font-size: 16px; font-weight: 400; color: #9aa3b2; }
+  .plan-tagline { font-size: 14px; color: #9aa3b2; margin-bottom: 24px; }
+
+  .features { list-style: none; margin: 24px 0; }
+  .features li { padding: 8px 0; font-size: 14px; color: #d8dde6; display: flex; gap: 8px; align-items: flex-start; }
+  .features li::before { content: '✓'; color: #22c55e; font-weight: bold; flex-shrink: 0; }
+  .features li.dim { color: #6b7280; }
+  .features li.dim::before { content: '—'; color: #4b5563; }
+
+  .btn {
+    display: block; width: 100%; padding: 12px 20px;
+    border: none; border-radius: 10px; font-size: 14px; font-weight: 600;
+    cursor: pointer; text-align: center; text-decoration: none;
+    transition: all 0.15s; margin-top: 16px;
+  }
+  .btn-primary { background: #6366f1; color: white; }
+  .btn-primary:hover { background: #818cf8; }
+  .btn-secondary { background: transparent; color: #d8dde6; border: 1px solid #2a2e3a; }
+  .btn-secondary:hover { background: #181b24; border-color: #6366f1; }
+
+  .faq { margin-top: 60px; }
+  .faq h2 { font-size: 22px; margin-bottom: 20px; }
+  .faq-item { padding: 16px 0; border-bottom: 1px solid #2a2e3a; }
+  .faq-q { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .faq-a { font-size: 14px; color: #9aa3b2; }
+
+  footer { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid #2a2e3a; color: #6b7280; font-size: 13px; }
+  footer a { color: #6366f1; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">
+      <span class="logo-mark">P</span>
+      PitchBox
+    </div>
+    <h1>Pricing</h1>
+    <p class="subtitle">Turn any company website into a personalized cold outreach in one click. Free for casual use, unlimited for ₹499/month.</p>
+  </header>
+
+  <div class="plans">
+    <!-- Free -->
+    <div class="plan">
+      <div class="plan-name">Free</div>
+      <div class="plan-price"><span class="currency">₹</span>0<span class="period"> / month</span></div>
+      <div class="plan-tagline">For occasional research and trying things out.</div>
+      <ul class="features">
+        <li>5 site scans per day</li>
+        <li>3 outreach drafts per day</li>
+        <li>BYO Claude API key (you pay Anthropic directly)</li>
+        <li>Tech-stack detection (100+ tools)</li>
+        <li>Buying-signal detection</li>
+        <li>Outreach angle generation</li>
+        <li>PDF export with audit detail</li>
+        <li>Save up to 25 prospects</li>
+      </ul>
+      <a href="https://chromewebstore.google.com/" class="btn btn-secondary" target="_blank">Get the extension</a>
+    </div>
+
+    <!-- Pro -->
+    <div class="plan featured">
+      <div class="plan-name">Pro</div>
+      <div class="plan-price"><span class="currency">₹</span>499<span class="period"> / month</span></div>
+      <div class="plan-tagline">For SDRs, founders, agencies, recruiters running outreach daily.</div>
+      <ul class="features">
+        <li><strong>Unlimited</strong> site scans</li>
+        <li><strong>Unlimited</strong> outreach drafts</li>
+        <li>BYO Claude API key</li>
+        <li>Everything in Free</li>
+        <li>Save unlimited prospects</li>
+        <li>Deep-scan subpages (careers, blog, case studies)</li>
+        <li>Per-image alt audit + broken-link audit in PDF</li>
+        <li>Priority email support</li>
+      </ul>
+      <p style="text-align: center; font-size: 12px; color: #9aa3b2; margin-top: 12px;">
+        Open the PitchBox sidebar → Settings → Sign in → Upgrade
+      </p>
+      <p style="text-align: center; font-size: 11px; color: #6b7280; margin-top: 8px;">
+        Annual: ₹4,999 (2 months free)
+      </p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <h2>Common questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Do I need my own Claude API key?</div>
+      <div class="faq-a">Yes — both Free and Pro use your Anthropic API key, which you supply once in Settings. PitchBox never proxies your queries; calls go straight from your browser to Anthropic. Pro removes our daily caps but you continue to pay Anthropic directly for what you use.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How does PitchBox handle my data?</div>
+      <div class="faq-a">Everything stays local in your browser. Scans, prospects, drafts, and your API key are stored in <code>chrome.storage.local</code>. Nothing is uploaded to our servers except your account email when you create a paid account. See <a href="privacy.html" style="color:#6366f1">Privacy Policy</a>.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Can I cancel anytime?</div>
+      <div class="faq-a">Yes. Email <a href="mailto:support@divergeix.com" style="color:#6366f1">support@divergeix.com</a> to cancel. No refunds for partial months but you keep Pro access until the end of the billing period.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Which payment methods?</div>
+      <div class="faq-a">UPI, all major Indian cards, net banking, and international Visa / Mastercard via Razorpay.</div>
+    </div>
+  </div>
+
+  <footer>
+    <p>PitchBox is built by <a href="https://divergeix.com" target="_blank">DivergeiX</a>.</p>
+    <p style="margin-top: 6px;">
+      <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="mailto:support@divergeix.com">support@divergeix.com</a>
+    </p>
+  </footer>
+</div>
+</body>
+</html>
