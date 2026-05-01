@@ -108,7 +108,7 @@ h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; text-align: center; 
   <p class="fine-print">
     <strong>All prices inclusive of 18% GST.</strong> GST invoice sent by email.<br>
     Payment processed by <strong>Razorpay</strong> (PCI-DSS Level 1 certified).<br>
-    Backend on <strong>Microsoft Azure</strong> (ISO 27001, SOC 2). All data in India region.<br>
+    Backend on <strong>ISO 27001 / SOC 2 certified cloud infrastructure</strong>. All data in India region.<br>
     By paying you accept the <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy Policy</a>.
   </p>
 </div>
@@ -135,8 +135,22 @@ h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; text-align: center; 
   }
 
   if (!orderId || !keyId || !amount || !email) {
-    showError('Missing order details. Please return to the PitchBox extension and click Upgrade again.');
+    // Direct visitors land here without order params — explain the flow + give them a way out
+    document.querySelector('h1').textContent = 'Checkout opens from inside the extension';
+    document.querySelector('.subtitle').innerHTML =
+      'Payments are tied to your PitchBox account. To upgrade:<br><br>' +
+      '<strong>1.</strong> Install PitchBox from the Chrome Web Store<br>' +
+      '<strong>2.</strong> Open the side panel → Settings → Sign in or create an account<br>' +
+      '<strong>3.</strong> Click an Upgrade button — this page will reopen with your order';
     btn.style.display = 'none';
+    document.querySelector('#summary').style.display = 'none';
+    // Replace the cancel button with an install link
+    var goBack = document.querySelector('.btn-secondary');
+    if (goBack) {
+      goBack.textContent = 'Get the extension';
+      goBack.href = 'https://chromewebstore.google.com/';
+      goBack.target = '_blank';
+    }
   } else {
     summaryEl.style.display = 'block';
     emailEl.textContent = email;

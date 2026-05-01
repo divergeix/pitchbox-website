@@ -85,7 +85,7 @@
       <li><strong>Payment records</strong> — Razorpay order ID, payment ID, amount, and GST breakdown. We do NOT store card numbers or bank details.</li>
       <li><strong>Account plan status</strong> — Free, Starter, Pro, or Business</li>
     </ul>
-    <p>This data is stored in Microsoft Azure Cosmos DB (Central India region) with encryption at rest (AES-256) and in transit (TLS 1.2+).</p>
+    <p>This data is stored in an encrypted cloud database in the India region (encryption at rest AES-256, in transit TLS 1.2+).</p>
 
     <h3>2.4 Data we do NOT collect</h3>
     <ul>
@@ -122,13 +122,13 @@
         <td>India</td>
       </tr>
       <tr>
-        <td><strong>Microsoft Azure</strong></td>
-        <td>Hosting for backend services (Azure Functions) and account storage (Cosmos DB). ISO 27001, ISO 27018, SOC 2.</td>
-        <td>India (Central India region)</td>
+        <td><strong>Cloud infrastructure provider</strong></td>
+        <td>Hosting for backend services (serverless functions) and account storage (encrypted database). ISO 27001, ISO 27018, SOC 2 certified.</td>
+        <td>India region</td>
       </tr>
       <tr>
-        <td><strong>GitHub (Microsoft)</strong></td>
-        <td>Static hosting (GitHub Pages) for marketing, checkout, and policy pages.</td>
+        <td><strong>Static page hosting</strong></td>
+        <td>Static hosting for marketing, checkout, and policy pages.</td>
         <td>Global CDN</td>
       </tr>
     </table>
@@ -163,7 +163,7 @@
       <li>Passwords hashed using bcrypt — never stored in plaintext</li>
       <li>Authentication uses signed JWT tokens with 30-day expiry</li>
       <li>All API communication uses HTTPS / TLS 1.2+</li>
-      <li>Azure Cosmos DB encryption at rest (AES-256)</li>
+      <li>Database encryption at rest (AES-256)</li>
       <li>Webhook payloads verified with HMAC-SHA256 signatures</li>
       <li>No third-party analytics or tracking pixels embedded in the extension</li>
     </ul>

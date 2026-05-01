@@ -34,7 +34,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .plan-desc { font-size: 13px; color: #64748b; margin-bottom: 16px; }
 .plan-price { font-size: 40px; font-weight: 900; margin-bottom: 4px; }
 .plan-price span { font-size: 16px; font-weight: 500; color: #94a3b8; }
-.plan-period { font-size: 13px; color: #94a3b8; margin-bottom: 20px; }
+.plan-period { font-size: 13px; color: #94a3b8; margin-bottom: 4px; }
+.plan-usd { font-size: 12px; color: #cbd5e1; margin-bottom: 16px; }
 .plan-original { text-decoration: line-through; color: #94a3b8; font-size: 14px; margin-bottom: 2px; }
 
 .plan-btn { display: block; width: 100%; padding: 14px; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-bottom: 20px; text-decoration: none; text-align: center; }
@@ -112,7 +113,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     <div class="plan-original" id="starter-original"></div>
     <div class="plan-price" id="starter-price">₹420<span>/mo</span></div>
     <div class="plan-period" id="starter-period">Billed monthly · incl. 18% GST</div>
-    <a href="#how" class="plan-btn secondary">Choose Starter</a>
+    <div class="plan-usd" id="starter-usd">≈ $5 USD / mo</div>
+    <a href="https://chromewebstore.google.com/" target="_blank" class="plan-btn secondary">Get extension to start</a>
     <ul class="features">
       <li>25 site scans per day</li>
       <li>10 outreach drafts per day</li>
@@ -133,7 +135,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     <div class="plan-original" id="pro-original"></div>
     <div class="plan-price" id="pro-price">₹840<span>/mo</span></div>
     <div class="plan-period" id="pro-period">Billed monthly · incl. 18% GST</div>
-    <a href="#how" class="plan-btn primary">Choose Pro</a>
+    <div class="plan-usd" id="pro-usd">≈ $10 USD / mo</div>
+    <a href="https://chromewebstore.google.com/" target="_blank" class="plan-btn primary">Get extension to start</a>
     <ul class="features">
       <li>100 site scans per day</li>
       <li>50 outreach drafts per day</li>
@@ -153,7 +156,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     <div class="plan-original" id="business-original"></div>
     <div class="plan-price" id="business-price">₹1,430<span>/mo</span></div>
     <div class="plan-period" id="business-period">Billed monthly · incl. 18% GST</div>
-    <a href="#how" class="plan-btn secondary">Choose Business</a>
+    <div class="plan-usd" id="business-usd">≈ $17 USD / mo</div>
+    <a href="https://chromewebstore.google.com/" target="_blank" class="plan-btn secondary">Get extension to start</a>
     <ul class="features">
       <li>300 site scans per day</li>
       <li>150 outreach drafts per day</li>
@@ -236,7 +240,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     </div>
     <div class="security-card">
       <h3>☁️ ISO-aligned infrastructure</h3>
-      <p>Backend hosted on Microsoft Azure (ISO 27001, ISO 27018, SOC 2 certified). Data residency in Central India. Encryption at rest (AES-256) and in transit (TLS 1.2+).</p>
+      <p>Backend hosted on ISO 27001, ISO 27018 and SOC 2 certified cloud infrastructure. Data residency in India. Encryption at rest (AES-256) and in transit (TLS 1.2+).</p>
     </div>
     <div class="security-card">
       <h3>🇮🇳 DPDP Act 2023 ready</h3>
@@ -259,7 +263,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 
   <div class="faq-item">
     <div class="faq-q">How is my data protected?</div>
-    <div class="faq-a">Scans and prospects stay in your browser (<code>chrome.storage.local</code>). Only your account email + payment record are on our servers. We are GDPR + DPDP Act 2023 compliant. Backend on Microsoft Azure (ISO 27001 / SOC 2 certified). Payments via Razorpay (PCI-DSS Level 1, RBI regulated). See <a href="privacy.html">Privacy Policy</a>.</div>
+    <div class="faq-a">Scans and prospects stay in your browser (<code>chrome.storage.local</code>). Only your account email + payment record are on our servers. We are GDPR + DPDP Act 2023 compliant. Backend on ISO 27001 / SOC 2 certified cloud infrastructure. Payments via Razorpay (PCI-DSS Level 1, RBI regulated). See <a href="privacy.html">Privacy Policy</a>.</div>
   </div>
 
   <div class="faq-item">
@@ -286,10 +290,24 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 
 <script>
 var billing = 'monthly';
+// USD equivalents recomputed at ~₹83/$. Update if INR/USD rate shifts materially.
+// These are display-only; billing is always in INR through Razorpay.
 var prices = {
-  starter:  { monthly: '₹420',   annual: '₹2,499', annualPer: '₹208', annualSave: '₹5,040 → ₹2,499' },
-  pro:      { monthly: '₹840',   annual: '₹4,999', annualPer: '₹417', annualSave: '₹10,080 → ₹4,999' },
-  business: { monthly: '₹1,430', annual: '₹8,399', annualPer: '₹700', annualSave: '₹17,160 → ₹8,399' }
+  starter:  {
+    monthly: '₹420',   annual: '₹2,499', annualPer: '₹208',
+    annualSave: '₹5,040 → ₹2,499',
+    usdMonthly: '≈ $5 USD / mo',  usdAnnual: '≈ $30 USD / year'
+  },
+  pro:      {
+    monthly: '₹840',   annual: '₹4,999', annualPer: '₹417',
+    annualSave: '₹10,080 → ₹4,999',
+    usdMonthly: '≈ $10 USD / mo', usdAnnual: '≈ $60 USD / year'
+  },
+  business: {
+    monthly: '₹1,430', annual: '₹8,399', annualPer: '₹700',
+    annualSave: '₹17,160 → ₹8,399',
+    usdMonthly: '≈ $17 USD / mo', usdAnnual: '≈ $101 USD / year'
+  }
 };
 
 function setBilling(type) {
@@ -302,10 +320,12 @@ function setBilling(type) {
     if (type === 'monthly') {
       document.getElementById(p + '-price').innerHTML = d.monthly + '<span>/mo</span>';
       document.getElementById(p + '-period').textContent = 'Billed monthly · incl. 18% GST';
+      document.getElementById(p + '-usd').textContent = d.usdMonthly;
       document.getElementById(p + '-original').textContent = '';
     } else {
       document.getElementById(p + '-price').innerHTML = d.annualPer + '<span>/mo</span>';
       document.getElementById(p + '-period').textContent = d.annual + ' billed yearly · incl. 18% GST';
+      document.getElementById(p + '-usd').textContent = d.usdAnnual;
       document.getElementById(p + '-original').textContent = d.annualSave;
     }
   });
